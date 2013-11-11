@@ -1,5 +1,5 @@
-local freezespeed = 500
-local removespeed = 4000
+local freezespeed = 300
+local removespeed = 3000
 hook.Add("Think","AMB_CrashCatcher",function()
         for k, ent in pairs(ents.FindByClass("prop_ragdoll")) do
                 if IsValid(ent) then
