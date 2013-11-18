@@ -15,6 +15,7 @@ hook.Add("Think","AMB_CrashCatcher",function()
                                         local messageToShow = "[CRASH PREVENTION] A ragdoll was removed to prevent server crashing. It was "
                                         if CORPSE.GetFound(ent, true) then
                                                 PrintMessage(HUD_PRINTTALK, messageToShow .. "an unID'd body.")
+                                                CORPSE.BodyDestroyed(ent);
                                         else
                                                 PrintMessage(HUD_PRINTTALK, messageToShow .. ent:GetNWString("nick") .. "'s body.")
                                         end
