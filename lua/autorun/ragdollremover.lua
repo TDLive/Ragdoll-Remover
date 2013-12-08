@@ -1,5 +1,14 @@
 local freezespeed = 300
 local removespeed = 3000
+
+function corpse_identify(corpse)
+        if corpse then
+                local ply = player.GetByUniqueID(corpse.uqid)
+                ply:SetNWBool("body_found", true)
+                CORPSE.SetFound(corpse, true)
+        end
+end
+
 hook.Add("Think","AMB_CrashCatcher",function()
         for k, ent in pairs(ents.FindByClass("prop_ragdoll")) do
                 if IsValid(ent) then
@@ -15,7 +24,7 @@ hook.Add("Think","AMB_CrashCatcher",function()
                                         local messageToShow = "[CRASH PREVENTION] A ragdoll was removed to prevent server crashing. It was "
                                         if CORPSE.GetFound(ent, true) then
                                                 PrintMessage(HUD_PRINTTALK, messageToShow .. "an unID'd body.")
-                                                CORPSE.BodyDestroyed(ent);
+                                                corpse_identify(ent);
                                         else
                                                 PrintMessage(HUD_PRINTTALK, messageToShow .. ent:GetNWString("nick") .. "'s body.")
                                         end
